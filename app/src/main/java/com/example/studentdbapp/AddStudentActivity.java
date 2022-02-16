@@ -13,10 +13,14 @@ public class AddStudentActivity extends AppCompatActivity {
 EditText ed1,ed2,ed3,ed4;
 AppCompatButton b1,b2;
 String getName,getRoll,getAdmn,getCollege;
+DatabaseHelper dbhelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
+        dbhelper=new DatabaseHelper(this);
+        dbhelper.getWritableDatabase();
+
         ed1=(EditText) findViewById(R.id.name);
         ed2=(EditText) findViewById(R.id.rollno);
         ed3=(EditText) findViewById(R.id.admno);
@@ -29,11 +33,20 @@ String getName,getRoll,getAdmn,getCollege;
                 getRoll=ed2.getText().toString();
                 getAdmn=ed3.getText().toString();
                 getCollege=ed4.getText().toString();
-                Toast.makeText(getApplicationContext(), getName, Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),getRoll,Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),getAdmn, Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(),getCollege,Toast.LENGTH_LONG);
 
+                boolean result=dbhelper.insertData(getName,getRoll,getAdmn,getCollege);
+                if(result==true)
+                {
+                    ed1.setText("");
+                    ed2.setText("");
+                    ed3.setText("");
+                    ed4.setText("");
+                    Toast.makeText(getApplicationContext(), "Successfully Inserted", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Failed to insert", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         b2=(AppCompatButton) findViewById(R.id.backtogo);

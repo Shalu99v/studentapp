@@ -27,6 +27,7 @@
     <EditText
         android:id="@+id/rollno"
         android:layout_margin="15dp"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/admno"
+            android:inputType="number"
             android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
