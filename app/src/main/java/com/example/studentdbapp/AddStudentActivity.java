@@ -3,6 +3,7 @@ package com.example.studentdbapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -29,9 +30,20 @@ String getName,getRoll,getAdmn,getCollege;
                 getAdmn=ed3.getText().toString();
                 getCollege=ed4.getText().toString();
                 Toast.makeText(getApplicationContext(), getName, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getRoll,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getAdmn, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getCollege,Toast.LENGTH_LONG);
+
             }
         });
         b2=(AppCompatButton) findViewById(R.id.backtogo);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
